@@ -1,10 +1,10 @@
-namespace Teacher
+namespace School.Models
 {
-    public class Teacher
+    public class Teacher:User
     {
-        public string id  { get; set; }
-        public string name  { get; set; }
-        public string courses  { get; set; }
-        public string title { get; set; }
+        public string TeacherId  { get; set; }
+        public string Name  { get; set; }
+        public ICollection<Courses> Courses  { get; set; }
+        public string Title { get; set; }
     }
 }

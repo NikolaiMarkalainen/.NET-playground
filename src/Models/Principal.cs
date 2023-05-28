@@ -1,10 +1,11 @@
-namespace Principal
+namespace School.Models
 {
-    public class Principal
+    public class Principal:User
     {
-        public string id { get; set; }
-        public string name  { get; set; }
-        public string teachers { get; set; }
-        public string students { get; set; }
+        public string PrincipalId { get; set; }
+        public string Name  { get; set; }
+        public ICollection<Courses> Courses { get; set; }
+        public ICollection<Student> Students { get; set; }
+        public ICollection<Teacher> Teachers { get; set; }
     }
 }

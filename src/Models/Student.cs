@@ -1,13 +1,12 @@
-namespace Student
+namespace School.Models
 {
-    public class Student
+    public class Student:User
     {
-        public string id { get; set; }
-        public string name  { get; set; }
-        public string classGroup { get; set; }
-        public string courses  { get; set; }
-        public int studentPoints { get; set; }
-        public string grades {get; set;}
-        public string userType { get; set; }
+        public string StudentId { get; set; }
+        public string Name  { get; set; }
+        public string ClassGroup { get; set; }
+        public ICollection<Courses> Courses { get; set; }
+        public int StudentPoints { get; set; }
+        public string Grades {get; set;}
     }
 }

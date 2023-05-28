@@ -1,8 +1,8 @@
-namespace Admin
+namespace School.Models
 {
-    public class Admin
+    public class Admin:User
     {
-        public string id  { get; set; }
-        public string name { get; set; }
+        public string AdminId  { get; set; }
+        public string Name { get; set; }
     }
 }
