@@ -1,6 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+namespace School
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var stream = File.OpenRead(".env"))
+            {
+                DotNetEnv.Env.Load();
+            }
 
-app.MapGet("/", () => "Hello World!");
+            var builder = WebApplication.CreateBuilder(args);
+            var app = builder.Build();
 
-app.Run();
+            app.MapGet("/", () => $"Hello World!, {Environment.GetEnvironmentVariable("POSTGRES_USER")}!");
+
+            app.Run();
+        }
+    }
+}
+

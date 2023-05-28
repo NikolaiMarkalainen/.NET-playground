@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    container_name: SchoolBackend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_NAME}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./backend:/usr/src/app
+    depends_on:
+      - database
+  database:
+    image: postgres:latest
+    container_name: database
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_NAME}
+    ports:
+    - ${POSTGRES_HOST}:${POSTGRES_HOST}
+    volumes:
+    - ./backend/data:/data/database
+
+volumes: {}
