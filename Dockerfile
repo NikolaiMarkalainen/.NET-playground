@@ -14,5 +14,5 @@ WORKDIR /publish
 
 COPY --from=build-env /publish ./
 
-ENTRYPOINT [ "dotnet", "CsharpTest.dll" ]
+ENTRYPOINT [ "dotnet", "SchoolSystem.dll" ]
 
