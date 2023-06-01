@@ -1,7 +1,7 @@
-version: '3'
+version: '3.4'
 services:
   app:
-    container_name: SchoolBackend
+    container_name: Api
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
     ports:
       - ${PORT}:${PORT}
     volumes:
-      - ./backend:/usr/src/app
+      - ./app:/publish
     depends_on:
       - database
   database:
@@ -28,6 +28,6 @@ services:
     ports:
     - ${POSTGRES_HOST}:${POSTGRES_HOST}
     volumes:
-    - ./backend/data:/data/database
+    - ./app/data:/data/database
 
 volumes: {}
