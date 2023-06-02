@@ -13,15 +13,15 @@ namespace School.Data
         }
 
 
-        public void TestConnection()
+        public async void  TestConnection()
         {
             var connectionString  = _configuration.GetConnectionString("DefaultConnection");
-    
-            using (var connection = new NpgsqlConnection(connectionString))
+            Console.WriteLine(connectionString.ToString());
+            await using var connection = new NpgsqlConnection(connectionString.ToString());
             {
                 try
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     Console.WriteLine("Database connection successful!");
                 }
                 catch (Exception ex)

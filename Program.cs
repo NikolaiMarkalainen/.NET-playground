@@ -6,15 +6,15 @@ namespace School
     {
         public static void Main(string[] args)
         {
-        DotNetEnv.Env.Load(".env");
         var builder = WebApplication.CreateBuilder(args);
-
+        DotNetEnv.Env.Load(".env");
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json")
             .AddEnvironmentVariables() 
             .Build();
 
+        Console.WriteLine(configuration.ToString());
         var connectionTester = new DatabaseContext(configuration);
         connectionTester.TestConnection();
         // Add services to the container.
