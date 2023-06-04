@@ -3,6 +3,7 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "externalUrlConfiguration": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:5820",
       "sslPort": 44306

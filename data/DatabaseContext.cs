@@ -16,8 +16,7 @@ namespace School.Data
         public async void  TestConnection()
         {
             var connectionString  = _configuration.GetConnectionString("DefaultConnection");
-            Console.WriteLine(connectionString.ToString());
-            await using var connection = new NpgsqlConnection(connectionString.ToString());
+            await using var connection = new NpgsqlConnection(connectionString);
             {
                 try
                 {

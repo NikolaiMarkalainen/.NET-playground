@@ -1,12 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS base
 WORKDIR /app
+COPY . .
+COPY Directory.Build.props .
 
 #Creating user 
-RUN useradd --create-home --shell /bin/bash --user-group --groups sudo appuser && \
-echo 'appuser:password' | chpasswd
-USER appuser
+RUN apt-get update && apt-get -y install sudo
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
+FROM base AS build
 WORKDIR /src
 COPY ["SchoolSystem.csproj", "./"]
 RUN dotnet restore
@@ -19,6 +19,8 @@ RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 
 
 FROM base AS final
+EXPOSE 5000
+ENV ASPNETCORE_URLS=http://+:5252
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT [ "dotnet", "SchoolSystem.dll" ]
+ENTRYPOINT dotnet watch run

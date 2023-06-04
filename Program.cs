@@ -6,7 +6,9 @@ namespace School
     {
         public static void Main(string[] args)
         {
+        
         var builder = WebApplication.CreateBuilder(args);
+        builder.WebHost.UseUrls();
         DotNetEnv.Env.Load(".env");
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -25,11 +27,13 @@ namespace School
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            Console.WriteLine("HERE");
         }
 
         app.UseAuthorization();
